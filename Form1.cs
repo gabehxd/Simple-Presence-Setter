@@ -22,8 +22,6 @@ namespace Simple_Presence_Setter
         {
             if (autocheck.Checked)
             {
-                try
-                {
                     client.SetPresence(new RichPresence()
                     {
                         Details = details.Text,
@@ -37,8 +35,6 @@ namespace Simple_Presence_Setter
                         }
                     });
                     client.Invoke();
-                }
-                catch { }
                 SaveConfig();
             }
         }
@@ -86,7 +82,8 @@ namespace Simple_Presence_Setter
                 client.Initialize();
                 foreach (Control textbox in Controls)
                 {
-                    if (textbox is TextBox && textbox != clientid) textbox.TextChanged += (o, s) => AutoUpdateDiscord();
+                    //make a delegate for each text box except clientid textbox
+                    if (textbox is TextBox && textbox != clientid) textbox.LostFocus += (o, s) => AutoUpdateDiscord();
                 }
                 ManualUpdateDiscord();
                 set_btn.Text = "Stop";
@@ -119,6 +116,7 @@ namespace Simple_Presence_Setter
 
         static void OnProcessExit(object sender, EventArgs e)
         {
+            //try to dispose the client if the user hasn't already
             try
             { 
             client.Dispose();
@@ -161,9 +159,8 @@ namespace Simple_Presence_Setter
             config.Save();
         }
 
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start($"https://discordapp.com/developers/applications/{clientid.Text}");
-        }
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start($"https://discordapp.com/developers/applications/{clientid.Text}");
+
+        private void Update_btn_Click(object sender, EventArgs e) => ManualUpdateDiscord();
     }
 }
