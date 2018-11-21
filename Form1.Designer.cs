@@ -234,6 +234,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Largekey);
             this.Controls.Add(this.autocheck);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Simple Presence Setter";
             this.ResumeLayout(false);
