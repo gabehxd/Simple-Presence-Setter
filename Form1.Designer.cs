@@ -39,7 +39,6 @@
             this.Smallkey = new System.Windows.Forms.TextBox();
             this.details = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.timercheck = new System.Windows.Forms.CheckBox();
             this.set_btn = new System.Windows.Forms.Button();
             this.clientid = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -145,22 +144,9 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Details";
             // 
-            // timercheck
-            // 
-            this.timercheck.AutoSize = true;
-            this.timercheck.Enabled = false;
-            this.timercheck.Location = new System.Drawing.Point(88, 405);
-            this.timercheck.Name = "timercheck";
-            this.timercheck.Size = new System.Drawing.Size(90, 17);
-            this.timercheck.TabIndex = 11;
-            this.timercheck.Text = "Enable timer?";
-            this.timercheck.UseVisualStyleBackColor = true;
-            this.timercheck.Visible = false;
-            this.timercheck.CheckedChanged += new System.EventHandler(this.Timercheck_CheckedChanged);
-            // 
             // set_btn
             // 
-            this.set_btn.Location = new System.Drawing.Point(112, 481);
+            this.set_btn.Location = new System.Drawing.Point(118, 454);
             this.set_btn.Name = "set_btn";
             this.set_btn.Size = new System.Drawing.Size(75, 23);
             this.set_btn.TabIndex = 12;
@@ -187,7 +173,7 @@
             // update_btn
             // 
             this.update_btn.Enabled = false;
-            this.update_btn.Location = new System.Drawing.Point(112, 452);
+            this.update_btn.Location = new System.Drawing.Point(118, 425);
             this.update_btn.Name = "update_btn";
             this.update_btn.Size = new System.Drawing.Size(75, 23);
             this.update_btn.TabIndex = 15;
@@ -222,7 +208,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.clientid);
             this.Controls.Add(this.set_btn);
-            this.Controls.Add(this.timercheck);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.details);
             this.Controls.Add(this.label3);
@@ -256,7 +241,6 @@
         private System.Windows.Forms.TextBox Smallkey;
         private System.Windows.Forms.TextBox details;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox timercheck;
         private System.Windows.Forms.Button set_btn;
         private System.Windows.Forms.TextBox clientid;
         private System.Windows.Forms.Label label6;

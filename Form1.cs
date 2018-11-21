@@ -8,30 +8,13 @@ namespace Simple_Presence_Setter
 {
     public partial class Form1 : Form
     {
-        public static System.Timers.Timer timer;
         public static DiscordRpcClient client;
-        
 
         public Form1()
         {
             InitializeComponent();
             LoadConfig();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-        }
-
-        private void Timercheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (timercheck.Checked)
-            {
-                var timer = new System.Timers.Timer(150);
-                timer.Elapsed += (send, args) => { client.Invoke(); };
-                timer.Start();
-
-            }
-            else
-            {
-                timer.Stop();
-            }
         }
 
         private void AutoUpdateDiscord()
@@ -138,7 +121,6 @@ namespace Simple_Presence_Setter
             try
             { 
             client.Dispose();
-            timer.Dispose();
             }
             catch { }
         }
