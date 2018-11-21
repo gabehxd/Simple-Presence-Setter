@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DiscordRPC;
 using DiscordRPC.Logging;
 using Configsys;
+using System.Diagnostics;
 
 namespace Simple_Presence_Setter
 {
@@ -85,7 +86,7 @@ namespace Simple_Presence_Setter
                 client.Initialize();
                 foreach (Control textbox in Controls)
                 {
-                    if (textbox is TextBox) textbox.TextChanged += (o, s) => AutoUpdateDiscord();
+                    if (textbox is TextBox && textbox != clientid) textbox.TextChanged += (o, s) => AutoUpdateDiscord();
                 }
                 ManualUpdateDiscord();
                 set_btn.Text = "Stop";
@@ -158,6 +159,11 @@ namespace Simple_Presence_Setter
                 Autoupdate = autocheck.Checked,
             };
             config.Save();
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start($"https://discordapp.com/developers/applications/{clientid.Text}");
         }
     }
 }

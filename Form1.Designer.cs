@@ -41,10 +41,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.set_btn = new System.Windows.Forms.Button();
             this.clientid = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.update_btn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.state = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // autocheck
@@ -161,15 +161,6 @@
             this.clientid.Size = new System.Drawing.Size(100, 20);
             this.clientid.TabIndex = 13;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(132, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Client ID";
-            // 
             // update_btn
             // 
             this.update_btn.Enabled = false;
@@ -197,15 +188,26 @@
             this.state.Size = new System.Drawing.Size(100, 20);
             this.state.TabIndex = 16;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(132, 42);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(47, 13);
+            this.linkLabel1.TabIndex = 18;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Client ID";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(310, 552);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.state);
             this.Controls.Add(this.update_btn);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.clientid);
             this.Controls.Add(this.set_btn);
             this.Controls.Add(this.label5);
@@ -243,10 +245,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button set_btn;
         private System.Windows.Forms.TextBox clientid;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button update_btn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox state;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
