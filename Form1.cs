@@ -22,19 +22,19 @@ namespace Simple_Presence_Setter
         {
             if (autocheck.Checked)
             {
-                    client.SetPresence(new RichPresence()
+                client.SetPresence(new RichPresence()
+                {
+                    Details = details.Text,
+                    State = state.Text,
+                    Assets = new Assets()
                     {
-                        Details = details.Text,
-                        State = state.Text,
-                        Assets = new Assets()
-                        {
-                            LargeImageKey = Largekey.Text,
-                            LargeImageText = Largetext.Text,
-                            SmallImageKey = Smallkey.Text,
-                            SmallImageText = Smalltext.Text
-                        }
+                        LargeImageKey = Largekey.Text,
+                        LargeImageText = Largetext.Text,
+                        SmallImageKey = Smallkey.Text,
+                        SmallImageText = Smalltext.Text
+                    }
                     });
-                    client.Invoke();
+                client.Invoke();
                 SaveConfig();
             }
         }
