@@ -33,7 +33,7 @@ namespace Simple_Presence_Setter
                         SmallImageKey = Smallkey.Text,
                         SmallImageText = Smalltext.Text
                     }
-                    });
+                });
                 client.Invoke();
                 SaveConfig();
             }
@@ -97,7 +97,7 @@ namespace Simple_Presence_Setter
                 autocheck.Enabled = true;
                 if (!autocheck.Checked) update_btn.Enabled = true;
             }
-            else 
+            else
             {
                 details.Enabled = false;
                 state.Enabled = false;
@@ -118,8 +118,8 @@ namespace Simple_Presence_Setter
         {
             //try to dispose the client if the user hasn't already
             try
-            { 
-            client.Dispose();
+            {
+                client.Dispose();
             }
             catch { }
         }
