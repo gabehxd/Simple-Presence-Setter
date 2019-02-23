@@ -143,6 +143,7 @@ namespace Simple_Presence_Setter
             details.Text = config.Detail;
             state.Text = config.State;
             autocheck.Checked = config.Autoupdate;
+            autocheck.Checked = config.Shouldmini;
         }
 
         private void SaveConfig()

@@ -37,7 +37,7 @@ namespace Configsys
             {
                 string[] lines = File.ReadAllLines(CONFIG_PATH.FullName);
 
-                foreach (var line in lines)
+                foreach (string line in lines)
                 {
                     string[] parts = line.Replace("\t", "").Split('=');
 
@@ -102,7 +102,7 @@ namespace Configsys
                 $"state={State}",
                 $"client={Client}",
                 $"autoupdate={(Autoupdate ? "true" : "false")}",
-                $"shouldmini={(Autoupdate ? "true" : "false")}"
+                $"shouldmini={(Shouldmini ? "true" : "false")}"
             };
 
             File.WriteAllLines(CONFIG_PATH.FullName, lines);
