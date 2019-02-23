@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.autocheck = new System.Windows.Forms.CheckBox();
             this.Largekey = new System.Windows.Forms.TextBox();
@@ -46,6 +47,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.state = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.Toolbar = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ShouldMini = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // autocheck
@@ -201,11 +204,28 @@
             this.linkLabel1.Text = "Client ID";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
+            // Toolbar
+            // 
+            this.Toolbar.Icon = ((System.Drawing.Icon)(resources.GetObject("Toolbar.Icon")));
+            this.Toolbar.Text = "Simple Presence Setter";
+            this.Toolbar.Click += new System.EventHandler(this.NotifyIcon_MouseClick);
+            // 
+            // ShouldMini
+            // 
+            this.ShouldMini.AutoSize = true;
+            this.ShouldMini.Location = new System.Drawing.Point(88, 394);
+            this.ShouldMini.Name = "ShouldMini";
+            this.ShouldMini.Size = new System.Drawing.Size(98, 17);
+            this.ShouldMini.TabIndex = 19;
+            this.ShouldMini.Text = "Minimize to tray";
+            this.ShouldMini.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(310, 552);
+            this.Controls.Add(this.ShouldMini);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.state);
@@ -228,6 +248,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Simple Presence Setter";
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,6 +273,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox state;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.NotifyIcon Toolbar;
+        private System.Windows.Forms.CheckBox ShouldMini;
     }
 }
 

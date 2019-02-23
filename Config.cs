@@ -19,7 +19,7 @@ namespace Configsys
 {
     public class Config
     {
-        private const string CONFIG_PATH = "config.txt";
+        private readonly FileInfo CONFIG_PATH = new FileInfo("config.txt");
 
         public string Smallkey { get; set; } = null;
         public string Smalltext { get; set; } = null;
@@ -29,12 +29,13 @@ namespace Configsys
         public string Client { get; set; } = null;
         public string State { get; set; } = null;
         public bool Autoupdate { get; set; } = false;
+        public bool Shouldmini { get; set; } = false;
 
         public Config()
         {
-            if (File.Exists(CONFIG_PATH))
+            if (File.Exists(CONFIG_PATH.FullName))
             {
-                string[] lines = File.ReadAllLines(CONFIG_PATH);
+                string[] lines = File.ReadAllLines(CONFIG_PATH.FullName);
 
                 foreach (var line in lines)
                 {
@@ -78,6 +79,9 @@ namespace Configsys
                                 case "autoupdate":
                                     Autoupdate = bool.Parse(parts[1]);
                                     break;
+                                case "shouldmini":
+                                    Shouldmini = bool.Parse(parts[1]);
+                                    break;
                             }
                         }
                         catch { }
@@ -98,9 +102,10 @@ namespace Configsys
                 $"state={State}",
                 $"client={Client}",
                 $"autoupdate={(Autoupdate ? "true" : "false")}",
+                $"shouldmini={(Autoupdate ? "true" : "false")}"
             };
 
-            File.WriteAllLines(CONFIG_PATH, lines);
+            File.WriteAllLines(CONFIG_PATH.FullName, lines);
         }
     }
 }

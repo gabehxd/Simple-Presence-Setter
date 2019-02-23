@@ -79,12 +79,14 @@ namespace Simple_Presence_Setter
                 {
                     Console.WriteLine("Received Update! {0}", s.Presence);
                 };
+
                 client.Initialize();
                 foreach (Control textbox in Controls)
                 {
                     //make a delegate for each text box except clientid textbox
                     if (textbox is TextBox && textbox != clientid) textbox.LostFocus += (o, s) => AutoUpdateDiscord();
                 }
+
                 ManualUpdateDiscord();
                 set_btn.Text = "Stop";
                 details.Enabled = true;
@@ -114,7 +116,7 @@ namespace Simple_Presence_Setter
             }
         }
 
-        static void OnProcessExit(object sender, EventArgs e)
+        private void OnProcessExit(object sender, EventArgs e)
         {
             //try to dispose the client if the user hasn't already
             try
@@ -157,6 +159,26 @@ namespace Simple_Presence_Setter
                 Autoupdate = autocheck.Checked,
             };
             config.Save();
+        }
+
+        //thanks stackoverflow :)
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            //if the form is minimized  
+            //hide it from the task bar  
+            //and show the system tray icon (represented by the NotifyIcon control)  
+            if (WindowState == FormWindowState.Minimized && ShouldMini.Checked)
+            {
+                Hide();
+                Toolbar.Visible = true;
+            }
+        }
+
+        private void NotifyIcon_MouseClick(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            Toolbar.Visible = false;
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start($"https://discordapp.com/developers/applications/{clientid.Text}");
