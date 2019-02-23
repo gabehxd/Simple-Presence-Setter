@@ -112,6 +112,7 @@ namespace Simple_Presence_Setter
                 set_btn.Text = "Start";
                 autocheck.Enabled = false;
                 update_btn.Enabled = false;
+
                 SaveConfig();
             }
         }
@@ -130,6 +131,7 @@ namespace Simple_Presence_Setter
         {
             if (autocheck.Checked) update_btn.Enabled = false;
             else update_btn.Enabled = true;
+            SaveConfig();
         }
 
         private void LoadConfig()
@@ -143,7 +145,7 @@ namespace Simple_Presence_Setter
             details.Text = config.Detail;
             state.Text = config.State;
             autocheck.Checked = config.Autoupdate;
-            autocheck.Checked = config.Shouldmini;
+            ShouldMini.Checked = config.Shouldmini;
         }
 
         private void SaveConfig()
@@ -158,6 +160,7 @@ namespace Simple_Presence_Setter
                 Detail = details.Text,
                 State = state.Text,
                 Autoupdate = autocheck.Checked,
+                Shouldmini = ShouldMini.Checked
             };
             config.Save();
         }
@@ -185,5 +188,7 @@ namespace Simple_Presence_Setter
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start($"https://discordapp.com/developers/applications/{clientid.Text}");
 
         private void Update_btn_Click(object sender, EventArgs e) => ManualUpdateDiscord();
+
+        private void ShouldMini_CheckedChanged(object sender, EventArgs e) => SaveConfig();
     }
 }

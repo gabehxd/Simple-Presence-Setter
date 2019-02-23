@@ -219,6 +219,7 @@
             this.ShouldMini.TabIndex = 19;
             this.ShouldMini.Text = "Minimize to tray";
             this.ShouldMini.UseVisualStyleBackColor = true;
+            this.ShouldMini.CheckedChanged += new System.EventHandler(this.ShouldMini_CheckedChanged);
             // 
             // Form1
             // 
