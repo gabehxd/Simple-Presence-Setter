@@ -147,8 +147,8 @@ namespace Simple_Presence_Setter
                 LargeImageKey = Largekey.Text,
                 SmallImageKey = Smallkey.Text
             };
-            if (Smalltext.Text.Length > 2) assets.SmallImageText = Smalltext.Text;
-            if (Largetext.Text.Length > 2) assets.LargeImageText = Largetext.Text;
+            if (Smalltext.Text.Length > 2 && Smallkey.Text.Length != 0) assets.SmallImageText = Smalltext.Text;
+            if (Largetext.Text.Length > 2 && Largetext.Text.Length != 0) assets.LargeImageText = Largetext.Text;
 
             client.SetPresence(client.CurrentPresence.WithAssets(assets));
             SaveConfig();
@@ -166,14 +166,14 @@ namespace Simple_Presence_Setter
 
         private void State_LostFocus(object sender, EventArgs e)
         {
-            if (state.Text.Length < 2) return;
+            if (state.Text.Length < 2 && state.Text.Length != 0) return;
             client.SetPresence(client.CurrentPresence.WithState(state.Text));
             SaveConfig();
         }
 
         private void Details_FocusLost(object sender, EventArgs e)
         {
-            if (details.Text.Length < 2) return;
+            if (details.Text.Length < 2 && details.Text.Length != 0) return;
             client.SetPresence(client.CurrentPresence.WithDetails(details.Text));
             SaveConfig();
         }
