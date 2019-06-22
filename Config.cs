@@ -28,8 +28,8 @@ namespace Configsys
         public string Detail { get; set; } = null;
         public string Client { get; set; } = null;
         public string State { get; set; } = null;
-        public bool Autoupdate { get; set; } = false;
         public bool Shouldmini { get; set; } = false;
+        public bool Timer { get; set; } = false;
 
         public Config()
         {
@@ -76,8 +76,8 @@ namespace Configsys
                                     State = parts[1];
                                     break;
 
-                                case "autoupdate":
-                                    Autoupdate = bool.Parse(parts[1]);
+                                case "timer":
+                                    Timer = bool.Parse(parts[1]);
                                     break;
                                 case "shouldmini":
                                     Shouldmini = bool.Parse(parts[1]);
@@ -101,7 +101,7 @@ namespace Configsys
                 $"detail={Detail}",
                 $"state={State}",
                 $"client={Client}",
-                $"autoupdate={(Autoupdate ? "true" : "false")}",
+                $"timer={(Timer ? "true" : "false")}",
                 $"shouldmini={(Shouldmini ? "true" : "false")}"
             };
 
