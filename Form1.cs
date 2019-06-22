@@ -147,7 +147,7 @@ namespace Simple_Presence_Setter
                 LargeImageKey = Largekey.Text,
                 SmallImageKey = Smallkey.Text
             };
-            if (Smallkey.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
+            if (Smalltext.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
             if (Largetext.Text.Length != 1) assets.LargeImageText = Largetext.Text;
 
             client.SetPresence(client.CurrentPresence.WithAssets(assets));
