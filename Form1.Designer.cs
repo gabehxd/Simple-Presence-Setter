@@ -58,7 +58,7 @@
             this.Largekey.Name = "Largekey";
             this.Largekey.Size = new System.Drawing.Size(100, 20);
             this.Largekey.TabIndex = 1;
-            this.Largekey.Leave += new System.EventHandler(this.AssetFocusLost);
+            this.Largekey.LostFocus += new System.EventHandler(this.AssetFocusLost);
             // 
             // label1
             // 
@@ -86,7 +86,7 @@
             this.Largetext.Name = "Largetext";
             this.Largetext.Size = new System.Drawing.Size(100, 20);
             this.Largetext.TabIndex = 3;
-            this.Largetext.Leave += new System.EventHandler(this.AssetFocusLost);
+            this.Smalltext.LostFocus += new System.EventHandler(this.AssetFocusLost);
             // 
             // label3
             // 
@@ -105,7 +105,7 @@
             this.Smalltext.Name = "Smalltext";
             this.Smalltext.Size = new System.Drawing.Size(100, 20);
             this.Smalltext.TabIndex = 7;
-            this.Smalltext.Leave += new System.EventHandler(this.AssetFocusLost);
+            this.Smalltext.LostFocus += new System.EventHandler(this.AssetFocusLost);
             // 
             // label4
             // 
@@ -124,7 +124,7 @@
             this.Smallkey.Name = "Smallkey";
             this.Smallkey.Size = new System.Drawing.Size(100, 20);
             this.Smallkey.TabIndex = 5;
-            this.Smallkey.Leave += new System.EventHandler(this.AssetFocusLost);
+            this.Smallkey.LostFocus += new System.EventHandler(this.AssetFocusLost);
             // 
             // details
             // 
@@ -134,7 +134,7 @@
             this.details.Name = "details";
             this.details.Size = new System.Drawing.Size(100, 20);
             this.details.TabIndex = 9;
-            this.details.TextChanged += new System.EventHandler(this.Details_TextChanged);
+            this.details.LostFocus += new System.EventHandler(this.Details_FocusLost);
             // 
             // label5
             // 
@@ -179,7 +179,7 @@
             this.state.Name = "state";
             this.state.Size = new System.Drawing.Size(100, 20);
             this.state.TabIndex = 16;
-            this.state.TextChanged += new System.EventHandler(this.State_TextChanged);
+            this.state.LostFocus += new System.EventHandler(this.State_LostFocus);
             // 
             // linkLabel1
             // 
@@ -212,6 +212,7 @@
             // TimerCheck
             // 
             this.TimerCheck.AutoSize = true;
+            this.TimerCheck.Enabled = false;
             this.TimerCheck.Location = new System.Drawing.Point(88, 425);
             this.TimerCheck.Name = "TimerCheck";
             this.TimerCheck.Size = new System.Drawing.Size(89, 17);

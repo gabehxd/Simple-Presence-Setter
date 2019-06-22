@@ -10,7 +10,7 @@ namespace Simple_Presence_Setter
 {
     public partial class Form1 : Form
     {
-        public static DiscordRpcClient client = null;
+        public static DiscordRpcClient client;
 
         public Form1()
         {
@@ -27,25 +27,30 @@ namespace Simple_Presence_Setter
             }
             else if (set_btn.Text == "Start")
             {
-                client = new DiscordRpcClient(clientid.Text, autoEvents: true);
+                client = new DiscordRpcClient(clientid.Text);
 
                 client.OnReady += (send, s) => Console.WriteLine("Received Ready from user {0}", s.User.Username);
                 client.OnPresenceUpdate += (send, s) => Console.WriteLine("Received Update! {0}", s.Presence);
+                client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
 
-                client.Initialize();
+                if (!client.Initialize()) throw new Exception("Failed to start client");
+
+                Assets assets = new Assets()
+                {
+                    LargeImageKey = Largekey.Text,
+                    SmallImageKey = Smallkey.Text
+                };
+                if (Smallkey.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
+                if (Largetext.Text.Length != 1) assets.LargeImageText = Largetext.Text;
+
                 RichPresence presence = new RichPresence()
                 {
                     Details = details.Text,
                     State = state.Text,
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = Largekey.Text,
-                        LargeImageText = Largetext.Text,
-                        SmallImageKey = Smallkey.Text,
-                        SmallImageText = Smalltext.Text
-                    }
+                    Assets = assets
                 };
                 if (TimerCheck.Checked) presence.Timestamps = Timestamps.Now;
+
                 client.SetPresence(presence);
 
                 set_btn.Text = "Stop";
@@ -56,6 +61,7 @@ namespace Simple_Presence_Setter
                 Smallkey.Enabled = true;
                 Smalltext.Enabled = true;
                 clientid.Enabled = false;
+                TimerCheck.Enabled = true;
             }
             else
             {
@@ -66,6 +72,7 @@ namespace Simple_Presence_Setter
                 Smallkey.Enabled = false;
                 Smalltext.Enabled = false;
                 clientid.Enabled = true;
+                TimerCheck.Enabled = false;
                 client.Dispose();
                 set_btn.Text = "Start";
 
@@ -135,34 +142,17 @@ namespace Simple_Presence_Setter
 
         private void AssetFocusLost(object sender, EventArgs e)
         {
-            client.SetPresence(client.CurrentPresence.WithAssets(new Assets()
+            Assets assets = new Assets()
             {
                 LargeImageKey = Largekey.Text,
-                LargeImageText = Largetext.Text,
-                SmallImageKey = Smallkey.Text,
-                SmallImageText = Smalltext.Text
-            }));
+                SmallImageKey = Smallkey.Text
+            };
+            if (Smallkey.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
+            if (Largetext.Text.Length != 1) assets.LargeImageText = Largetext.Text;
+
+            client.SetPresence(client.CurrentPresence.WithAssets(assets));
             SaveConfig();
         }
-
-        private void Details_TextChanged(object sender, EventArgs e)
-        {
-            if (client != null && !client.IsDisposed)
-            {
-                client.SetPresence(client.CurrentPresence.WithDetails(details.Text));
-                SaveConfig();
-            }
-        }
-
-        private void State_TextChanged(object sender, EventArgs e)
-        {
-            if (client != null && !client.IsDisposed)
-            {
-                client.SetPresence(client.CurrentPresence.WithState(state.Text));
-                SaveConfig();
-            }
-        }
-
 
         private void TimerCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -172,6 +162,20 @@ namespace Simple_Presence_Setter
                 else client.SetPresence(client.CurrentPresence.WithTimestamps(null));
                 SaveConfig();
             }
+        }
+
+        private void State_LostFocus(object sender, EventArgs e)
+        {
+            if (state.Text.Length == 1) return;
+            client.SetPresence(client.CurrentPresence.WithState(state.Text));
+            SaveConfig();
+        }
+
+        private void Details_FocusLost(object sender, EventArgs e)
+        {
+            if (details.Text.Length == 1) return;
+            client.SetPresence(client.CurrentPresence.WithDetails(details.Text));
+            SaveConfig();
         }
     }
 }
