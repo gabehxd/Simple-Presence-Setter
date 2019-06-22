@@ -40,8 +40,8 @@ namespace Simple_Presence_Setter
                     LargeImageKey = Largekey.Text,
                     SmallImageKey = Smallkey.Text
                 };
-                if (Smallkey.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
-                if (Largetext.Text.Length != 1) assets.LargeImageText = Largetext.Text;
+                if (Smallkey.Text.Length > 2) assets.SmallImageText = Smalltext.Text;
+                if (Largetext.Text.Length > 2) assets.LargeImageText = Largetext.Text;
 
                 RichPresence presence = new RichPresence()
                 {
@@ -147,8 +147,8 @@ namespace Simple_Presence_Setter
                 LargeImageKey = Largekey.Text,
                 SmallImageKey = Smallkey.Text
             };
-            if (Smalltext.Text.Length != 1) assets.SmallImageText = Smalltext.Text;
-            if (Largetext.Text.Length != 1) assets.LargeImageText = Largetext.Text;
+            if (Smalltext.Text.Length > 2) assets.SmallImageText = Smalltext.Text;
+            if (Largetext.Text.Length > 2) assets.LargeImageText = Largetext.Text;
 
             client.SetPresence(client.CurrentPresence.WithAssets(assets));
             SaveConfig();
@@ -166,14 +166,14 @@ namespace Simple_Presence_Setter
 
         private void State_LostFocus(object sender, EventArgs e)
         {
-            if (state.Text.Length == 1) return;
+            if (state.Text.Length < 2) return;
             client.SetPresence(client.CurrentPresence.WithState(state.Text));
             SaveConfig();
         }
 
         private void Details_FocusLost(object sender, EventArgs e)
         {
-            if (details.Text.Length == 1) return;
+            if (details.Text.Length < 2) return;
             client.SetPresence(client.CurrentPresence.WithDetails(details.Text));
             SaveConfig();
         }
